@@ -1,0 +1,38 @@
+{
+  "name": "@craigmcc/ts-database",
+  "version": "1.0.0",
+  "description": "Low-level dialect-independent interface to multiple database implementations.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch --preserveWatchOutput",
+    "test": "mocha src/**/*.test.ts",
+    "test:watch": "mocha --watch src/**/*.test.ts",
+    "tsc": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/craigmcc/ts-database.git"
+  },
+  "keywords": [
+    "database",
+    "typescript"
+  ],
+  "author": "Craig McClanahan <craigmcc@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/craigmcc/ts-database/issues"
+  },
+  "homepage": "https://github.com/craigmcc/ts-database#readme",
+  "devDependencies": {
+    "@types/chai": "^4.2.14",
+    "@types/mocha": "^8.2.0",
+    "@types/node": "^14.14.22",
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    "nodemon": "^2.0.7",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}
