@@ -1,3 +1,9 @@
+import {
+    ConnectionAttributes,
+    ConnectionURI,
+} from "./types";
+import {InvalidNameError} from "./errors";
+
 export { Connection } from "./Connection";
 export { ConnectionOperations } from "./ConnectionOperations";
 export { DdlOperations } from "./DdlOperations";
@@ -14,6 +20,7 @@ export {
 // Primitive Data Types
 export {
     ColumnName,
+    ConnectionURI,
     ConstraintName,
     DatabaseName,
     DataType,
@@ -32,4 +39,3 @@ export {
     ForeignKeyAttributes,
     IndexAttributes,
 } from "./types";
-

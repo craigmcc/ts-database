@@ -47,13 +47,13 @@ export interface ColumnAttributes {
 
 // Connection attributes when passed as an object
 export interface ConnectionAttributes {
-    database: DatabaseName;         // Database to connect to - TODO - optional?
+    database?: DatabaseName;        // Database to connect to
     dialect: string;                // Database dialect (used to pick
                                     // available implementation)
-    host: HostName;                 // Connection host [localhost]
-    password: string;               // User password to authenticate
+    host?: HostName;                // Connection host [localhost]
+    password?: string;              // User password to authenticate
     port?: number;                  // Connection port [dialect default]
-    username: string;               // User username to authenticate
+    username?: string;              // User username to authenticate
 }
 
 // A data object passed in (insert, update) or returned (select, update)

@@ -7,6 +7,7 @@
 // Internal Modules ----------------------------------------------------------
 
 import {
+    ConnectionAttributes, ConnectionURI,
     DatabaseName
 } from "./types";
 
@@ -27,6 +28,13 @@ export interface ConnectionOperations {
         databaseName: DatabaseName,
         options?: object
     ) => Promise<void>;
+
+    /**
+     * Connect to the database environment
+     *
+     * @param params Either a connection URI string or ConnectionAttributes object
+     */
+    connect: (params: ConnectionURI | ConnectionAttributes) => Promise<void>
 
     /**
      * Is this delegated instance currently connected to its database environment?
