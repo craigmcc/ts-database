@@ -45,19 +45,6 @@ export interface DdlOperations {
     ) => Promise<void>;
 
     /**
-     * Create and add a new database to this environment
-     *
-     * @param databaseName      Name of the database to be created
-     * @param options           Opotions for this operation - TODO
-     */
-/* TODO - every operation here is specific to a database already
-    addDatabase: (
-        databaseName: string,
-        options?: object
-    ) => Promise<void>;
-*/
-
-    /**
      * Add a foreign key constraint to an existing column of an existing table.
      *
      * @param tableName         Name of existing table
@@ -114,19 +101,6 @@ export interface DdlOperations {
         columnName: ColumnName,
         options?: object
     ) => Promise<void>;
-
-    /**
-     * Drop an existing database from this environment.
-     *
-     * @param databaseName      Name of an existing database
-     * @param options           Options for this operation
-     */
-/* TODO - every operation here is specific to a database already
-    dropDatabase: (
-        databaseName: string,
-        options?: object
-    ) => Promise<void>;
-*/
 
     /**
      * Drop an existing foreign key constraint from an existing table.

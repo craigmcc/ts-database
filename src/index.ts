@@ -1,4 +1,5 @@
 export { Connection } from "./Connection";
+export { ConnectionOperations } from "./ConnectionOperations";
 export { DdlOperations } from "./DdlOperations";
 export { DmlOperations } from "./DmlOperations";
 
@@ -14,7 +15,9 @@ export {
 export {
     ColumnName,
     ConstraintName,
+    DatabaseName,
     DataType,
+    HostName,
     IndexName,
     OnDelete,
     OnUpdate,
@@ -24,6 +27,7 @@ export {
 // Composite Data Types
 export {
     ColumnAttributes,
+    ConnectionAttributes,
     DataObject,
     ForeignKeyAttributes,
     IndexAttributes,

@@ -4,6 +4,10 @@
 
 // Primitive Data Types ------------------------------------------------------
 
+// Connection URI, conventional format is ([] indicates optional part):
+// {dialect}://{username}:{password}@{host}[:{port}]/{database}
+export type ConnectionURI = string;
+
 // Column Data Types (inspired by Sequelize)
 export enum DataType {
     BIGINT = "BIGINT",              // 64-bit integer
@@ -20,6 +24,8 @@ export enum DataType {
 // Name data types for specific object names
 export type ColumnName = string;
 export type ConstraintName = string;
+export type DatabaseName = string;
+export type HostName = string;
 export type IndexName = string;
 export type TableName = string;
 
@@ -37,6 +43,17 @@ export interface ColumnAttributes {
     name: ColumnName;               // Name of the column to be added
     primaryKey?: boolean;           // Is this (part of) the primary key? [false]
     type: DataType;                 // Data type of this column
+}
+
+// Connection attributes when passed as an object
+export interface ConnectionAttributes {
+    database: DatabaseName;         // Database to connect to - TODO - optional?
+    dialect: string;                // Database dialect (used to pick
+                                    // available implementation)
+    host: HostName;                 // Connection host [localhost]
+    password: string;               // User password to authenticate
+    port?: number;                  // Connection port [dialect default]
+    username: string;               // User username to authenticate
 }
 
 // A data object passed in (insert, update) or returned (select, update)

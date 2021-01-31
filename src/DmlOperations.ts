@@ -22,15 +22,28 @@ import {
 export interface DmlOperations {
 
     /**
-     * Insert a new row (or rows) into the specified table.
+     * Insert a new row into the specified table, and return the resulting row.
      *
      * @param tableName         Table into which a new row is inserted
-     * @param dataObject        Data values (keyed by column name)
+     * @param row               Data values (keyed by column name)
      * @param options           Options for this operation
      */
     insert: (
         tableName: TableName,
-        dataObject: DataObject | DataObject[],
+        row: DataObject,
+        options?: object
+    ) => Promise<DataObject>;
+
+    /**
+     * Insert new rows into the specified table, and return the resulting rows.
+     *
+     * @param tableName         Table into which new rows are inserted
+     * @param rows              Data values (keyed by column name)
+     * @param options           Options for this operation
+     */
+    inserts: (
+        tableName: TableName,
+        row: DataObject[],
         options?: object
     ) => Promise<DataObject>;
 
