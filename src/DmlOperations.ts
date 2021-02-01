@@ -45,7 +45,7 @@ export interface DmlOperations {
         tableName: TableName,
         row: DataObject[],
         options?: object
-    ) => Promise<DataObject>;
+    ) => Promise<DataObject[]>;
 
 }
 

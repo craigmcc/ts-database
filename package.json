@@ -1,6 +1,6 @@
 {
   "name": "@craigmcc/ts-database",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Low-level dialect-independent interface to multiple database implementations.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

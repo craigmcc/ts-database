@@ -30,11 +30,10 @@ export interface ConnectionOperations {
     ) => Promise<void>;
 
     /**
-     * Connect to the database environment
-     *
-     * @param params Either a connection URI string or ConnectionAttributes object
+     * Connect to the database environment specified by the configuration
+     * parameters passed when this instance was created.
      */
-    connect: (params: ConnectionURI | ConnectionAttributes) => Promise<void>
+    connect: () => Promise<void>
 
     /**
      * Is this delegated instance currently connected to its database environment?
