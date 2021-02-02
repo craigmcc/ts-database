@@ -4,7 +4,7 @@
 
 // Primitive Data Types ------------------------------------------------------
 
-// Connection URI, conventional format is ([] indicates optional part):
+// Connection URI, conventional format is ([] indicates an optional part):
 // {dialect}://{username}:{password}@{host}[:{port}]/{database}
 export type ConnectionURI = string;
 
@@ -78,9 +78,25 @@ export interface IndexAttributes {
     unique?: boolean;               // Is this index unique? [false]
 }
 
+// Criteria for a select() operation.
+export interface SelectCriteria {
+    columns?: string[]              // Array of column names to return [*]
+    limit?: number,                 // Maximum rows returned [no limit]
+    offset?: number,                // Zero-relative offset to first returned row [0]
+    orderBy?: string;               // ORDER BY clause contents (that go after ORDER BY)
+    where?: WhereCriteria;          // WHERE clause contents (that go after WHERE)
+}
+
 // Attributes of an existing table being described.
 export interface TableAttributes {
     columns: ColumnAttributes[];    // Column attributes of this table
     name: TableName;                // Name of this table
 }
 
+// Criteria for the WHERE clause that will be constructed for
+// delete(), select(), and update() calls.
+export interface WhereCriteria {
+    clause: string;                 // Contents that go after WHERE,
+                                    // with optional replacement params ($1, $2, etc.)
+    values?: any[];                 // Values for replacement params (first is for $1)
+}

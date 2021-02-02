@@ -7,7 +7,8 @@
 // Internal Modules ----------------------------------------------------------
 
 import {
-    ConnectionAttributes, ConnectionURI,
+    ConnectionAttributes,
+    ConnectionURI,
     DatabaseName
 } from "./types";
 

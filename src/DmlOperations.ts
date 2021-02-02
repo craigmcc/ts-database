@@ -9,8 +9,8 @@
 // Internal Modules ----------------------------------------------------------
 
 import {
-    DataObject,
-    TableName,
+    DataObject, SelectCriteria,
+    TableName, WhereCriteria,
 } from "./types";
 
 // Public Objects ------------------------------------------------------------
@@ -22,30 +22,68 @@ import {
 export interface DmlOperations {
 
     /**
-     * Insert a new row into the specified table, and return the resulting row.
+     * Delete zero or more rows that match the specified criteria.
+     *
+     * @param tableName         Table name from which to delete rows
+     * @param where             Where criteria to specified matching rows
+     * @param options           Options for this operation
+     *
+     * @returns Number of rows that were deleted
+     */
+    delete: (
+        tableName: TableName,
+        where: WhereCriteria,
+        options?: object
+    ) => Promise<number>;
+
+    /**
+     * Insert one or more new rows into the specified table.
      *
      * @param tableName         Table into which a new row is inserted
-     * @param row               Data values (keyed by column name)
+     * @param rows              Array of data values (keyed by column name)
      * @param options           Options for this operation
+     *
+     * @returns Number of rows that were inserted
      */
     insert: (
         tableName: TableName,
-        row: DataObject,
+        rows: DataObject | DataObject[],
         options?: object
-    ) => Promise<DataObject>;
+    ) => Promise<number>;
 
     /**
-     * Insert new rows into the specified table, and return the resulting rows.
+     * Select zero or more rows that match the specified criteria from the
+     * specified table.  If no rows match, an empty array will be returned.
      *
-     * @param tableName         Table into which new rows are inserted
-     * @param rows              Data values (keyed by column name)
+     * @param tableName         Table from which to select rows
+     * @param criteria          Selection criteria defining what rows to match
      * @param options           Options for this operation
+     *
+     * @returns Array of DataObject containing the matching rows
      */
-    inserts: (
+    select: (
         tableName: TableName,
-        row: DataObject[],
+        criteria: SelectCriteria,
         options?: object
     ) => Promise<DataObject[]>;
+
+    /**
+     * Update zero or more rows that match the specified criteria in the
+     * specified table.  Only the columns included in the values will be
+     * updated.  The keys in the first values object determine which columns
+     * will be included in the UPDATE statement.
+     *
+     * @param tableName
+     * @param values
+     * @param where
+     *
+     * @returns Number of rows that were updated
+     */
+    update: (
+        tableName: TableName,
+        values: DataObject[],
+        where: WhereCriteria,
+    ) => Promise<number>;
 
 }
 

@@ -42,7 +42,9 @@ export {
     DataObject,
     ForeignKeyAttributes,
     IndexAttributes,
+    SelectCriteria,
     TableAttributes,
+    WhereCriteria,
 } from "./types";
 
 
