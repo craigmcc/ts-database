@@ -25,6 +25,16 @@ export abstract class DatabaseError extends Error {
 // Specific Error Classes ----------------------------------------------------
 
 /**
+ * The specified column does not exist.
+ */
+export class ColumnNotFoundError extends DatabaseError {
+    constructor(source: Source, context?: string) {
+        super(source, context);
+    }
+    error = "ColumnNotFoundError";
+}
+
+/**
  * A specified name does not conform to valid SQL syntax requirements
  */
 export class InvalidNameError extends DatabaseError {
@@ -54,5 +64,15 @@ export class NotSupportedError extends DatabaseError {
         super(source, context);
     }
     error = "NotSupportedError";
+}
+
+/**
+ * The specified table does not exist.
+ */
+export class TableNotFoundError extends DatabaseError {
+    constructor(source: Source, context?: string) {
+        super(source, context);
+    }
+    error = "TableNotFoundError";
 }
 

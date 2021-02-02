@@ -14,6 +14,7 @@ import {
     ColumnName,
     ConstraintName,
     IndexName,
+    TableAttributes,
     TableName,
 } from "./types";
 
@@ -90,6 +91,18 @@ export interface DdlOperations {
     ) => Promise<void>;
 
     /**
+     * Describe an existing table.
+     *
+     * @param tableName         Name of an existing table
+     *
+     * @throws TableNotFoundError if specified table does not exist
+     */
+    describeTable: (
+        tableName: TableName,
+        options?: object
+    ) => Promise<TableAttributes>;
+
+    /**
      * Drop an existing column from an existing table.
      *
      * @param tableName         Name of an existing table
@@ -144,6 +157,8 @@ export interface DdlOperations {
      *
      * @param tableName         Name of an existing table
      * @param options           Options for this operation
+     *
+     * @throws TableNotFoundError if specified table does not exist
      */
     dropTable: (
         tableName: TableName,

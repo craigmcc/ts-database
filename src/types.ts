@@ -78,3 +78,9 @@ export interface IndexAttributes {
     unique?: boolean;               // Is this index unique? [false]
 }
 
+// Attributes of an existing table being described.
+export interface TableAttributes {
+    columns: ColumnAttributes[];    // Column attributes of this table
+    name: TableName;                // Name of this table
+}
+

@@ -12,10 +12,13 @@ export { DmlOperations } from "./DmlOperations";
 
 // Convenience Error subclasses
 export {
+    ColumnNotFoundError,
     DatabaseError,
     InvalidNameError,
     NotConnectedError,
     NotSupportedError,
+    Source,
+    TableNotFoundError,
 } from "./errors";
 
 // Primitive Data Types
@@ -39,6 +42,7 @@ export {
     DataObject,
     ForeignKeyAttributes,
     IndexAttributes,
+    TableAttributes,
 } from "./types";
 
 
@@ -68,10 +72,10 @@ export async function connection
     } else if (params.dialect) {
         dialectName = params.dialect;
     }
-    console.info(`connection: Looking for dialect '${dialectName}'`);
+//    console.info(`connection: Looking for dialect '${dialectName}'`);
     const moduleName = registrations.get(dialectName);
     if (moduleName) {
-        console.info(`connection: Loading module '${moduleName}' for dialect '${dialectName}'`);
+//        console.info(`connection: Loading module '${moduleName}' for dialect '${dialectName}'`);
         const module = await import(moduleName);
         return module.default(params);
     } else {
@@ -88,7 +92,7 @@ export async function connection
  * @param moduleName                Javascript module to be imported
  */
 export const register = (dialectName: string, moduleName: string): void => {
-    console.info(`TsDatabase.register('${dialectName}', '${moduleName}')`);
+//    console.info(`TsDatabase.register('${dialectName}', '${moduleName}')`);
     registrations.set(dialectName, moduleName);
 }
 
