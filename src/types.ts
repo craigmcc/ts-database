@@ -83,7 +83,7 @@ export interface SelectCriteria {
     columns?: string[]              // Array of column names to return [*]
     limit?: number,                 // Maximum rows returned [no limit]
     offset?: number,                // Zero-relative offset to first returned row [0]
-    orderBy?: string;               // ORDER BY clause contents (that go after ORDER BY)
+    orderBy?: string[];             // Array of column names to sort by (ascending) [none]
     where?: WhereCriteria;          // WHERE clause contents (that go after WHERE)
 }
 

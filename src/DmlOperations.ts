@@ -73,16 +73,17 @@ export interface DmlOperations {
      * updated.  The keys in the first values object determine which columns
      * will be included in the UPDATE statement.
      *
-     * @param tableName
-     * @param values
-     * @param where
+     * @param tableName         Table name for which to update rows
+     * @param values            Name/values to be updated
+     * @param where             WHERE criteria for this update
      *
      * @returns Number of rows that were updated
      */
     update: (
         tableName: TableName,
-        values: DataObject[],
+        values: DataObject,
         where: WhereCriteria,
+        options?: object
     ) => Promise<number>;
 
 }
