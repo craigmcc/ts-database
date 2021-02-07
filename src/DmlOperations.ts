@@ -29,6 +29,8 @@ export interface DmlOperations {
      * @param options           Options for this operation
      *
      * @returns Number of rows that were deleted
+     *
+     * @throws TableNotFoundError if specified table does not exist
      */
     delete: (
         tableName: TableName,
@@ -44,6 +46,8 @@ export interface DmlOperations {
      * @param options           Options for this operation
      *
      * @returns Number of rows that were inserted
+     *
+     * @throws TableNotFoundError if specified table does not exist
      */
     insert: (
         tableName: TableName,
@@ -60,12 +64,27 @@ export interface DmlOperations {
      * @param options           Options for this operation
      *
      * @returns Array of DataObject containing the matching rows
+     *
+     * @throws TableNotFoundError if specified table does not exist
      */
     select: (
         tableName: TableName,
         criteria: SelectCriteria,
         options?: object
     ) => Promise<DataObject[]>;
+
+    /**
+     * Drop all rows from the specified table.
+     *
+     * @param tableName         Name of an existing table
+     * @param options           Options for this operation
+     *
+     * @throws TableNotFoundError if specified table does not exist
+     */
+    truncate: (
+        tableName: TableName,
+        options?: object
+    ) => Promise<void>;
 
     /**
      * Update zero or more rows that match the specified criteria in the
@@ -78,6 +97,8 @@ export interface DmlOperations {
      * @param where             WHERE criteria for this update
      *
      * @returns Number of rows that were updated
+     *
+     * @throws TableNotFoundError if specified table does not exist
      */
     update: (
         tableName: TableName,

@@ -38,6 +38,9 @@ export interface DdlOperations {
      * @param tableName         Name of an existing table
      * @param attributes        Attributes of the column to be added
      * @param options           Options for this operation
+     *
+     * @throws TableNotFoundError if specified table does not exist
+     * @throws DuplicateColumnError if specified column already exists
      */
     addColumn: (
         tableName: TableName,
@@ -54,6 +57,9 @@ export interface DdlOperations {
      * @param options           Options for this operation
      *
      * @returns Name of the foreign key constraint that was created
+     *
+     * @throws TableNotFoundError if specified table does not exist
+     * @throws ColumnNotFoundError if specified column does not exist
      */
     addForeignKey: (
         tableName: TableName,
@@ -70,6 +76,9 @@ export interface DdlOperations {
      * @param options           Options for this operation
      *
      * @return Name of the index that was created
+     *
+     * @throws TableNotFoundError if specified table does not exist
+     * @throws DuplicateIndexError if specified index already exists
      */
     addIndex: (
         tableName: TableName,
@@ -83,6 +92,8 @@ export interface DdlOperations {
      * @param tableName         Name of a new table
      * @param attributes        Attributes of the columns to be created
      * @param options           Options for this operation
+     *
+     * @throws DuplicateTableError if specified table already exists
      */
     addTable: (
         tableName: TableName,
@@ -108,6 +119,9 @@ export interface DdlOperations {
      * @param tableName         Name of an existing table
      * @param columnName        Name of the column to be dropped
      * @param options           Options for this operation
+     *
+     * @throws TableNotFoundError if specified table does not exist
+     * @throws ColumnNotFoundError if specified column does not exist
      */
     dropColumn: (
         tableName: TableName,
@@ -121,6 +135,8 @@ export interface DdlOperations {
      * @param tableName         Name of an existing table
      * @param foreignKey        Name of the foreign key constraint to be dropped
      * @param options           Options for this operation
+     *
+     * @throws TableNotFoundError if specified table does not exist
      */
     dropForeignKey: (
         tableName: TableName,
@@ -134,21 +150,13 @@ export interface DdlOperations {
      * @param tableName         Name of an existing table
      * @param indexName         Name of the index to be dropped
      * @param options           Options for this operation
+     *
+     * @throws TableNotFoundError if specified table does not exist
+     * @throws IndexNotFoundError if specified index does not exist
      */
     dropIndex: (
         tableName: TableName,
         indexName: IndexName,
-        options?: object
-    ) => Promise<void>;
-
-    /**
-     * Drop all rows from the specified table.
-     *
-     * @param tableName         Name of an existing table
-     * @param options           Options for this operation
-     */
-    dropRows: (
-        tableName: TableName,
         options?: object
     ) => Promise<void>;
 

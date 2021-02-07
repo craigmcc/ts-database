@@ -14,6 +14,10 @@ export { DmlOperations } from "./DmlOperations";
 export {
     ColumnNotFoundError,
     DatabaseError,
+    DuplicateColumnError,
+    DuplicateIndexError,
+    DuplicateTableError,
+    IndexNotFoundError,
     InvalidNameError,
     NotConnectedError,
     NotSupportedError,

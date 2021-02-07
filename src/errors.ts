@@ -11,14 +11,23 @@ export abstract class DatabaseError extends Error {
 
     constructor(source: Source, context?: string) {
         super(source instanceof Error ? source.message : source);
+        if (source instanceof Error) {
+            // @ts-ignore
+            if (source.code) {
+                // @ts-ignore
+                this.code = source.code;
+            }
+        }
         this.context = context ? context : undefined;
         this.error = "DatabaseError"
         this.inner = source instanceof Error ? source : undefined;
     }
 
-    context: string | undefined;
-    error: string;
-    inner: Error | undefined;
+    code: string | undefined;           // Dialect-specific (if present)
+    context: string | undefined;        // Description of error context
+    error: string;                      // Error class name
+    inner: Error | undefined;           // Inner error being wrapped
+                                        // (if source is an Error)
 
 }
 
@@ -32,6 +41,46 @@ export class ColumnNotFoundError extends DatabaseError {
         super(source, context);
     }
     error = "ColumnNotFoundError";
+}
+
+/**
+ * The specified column is a duplicate.
+ */
+export class DuplicateColumnError extends DatabaseError {
+    constructor(source: Source, context?: string) {
+        super(source, context);
+    }
+    error = "DuplicateColumnError";
+}
+
+/**
+ * The specified index is a duplicate.
+ */
+export class DuplicateIndexError extends DatabaseError {
+    constructor(source: Source, context?: string) {
+        super(source, context);
+    }
+    error = "DuplicateIndexError";
+}
+
+/**
+ * The specified table is a duplicate.
+ */
+export class DuplicateTableError extends DatabaseError {
+    constructor(source: Source, context?: string) {
+        super(source, context);
+    }
+    error = "DuplicateTableError";
+}
+
+/**
+ * The specified index does not exist.
+ */
+export class IndexNotFoundError extends DatabaseError {
+    constructor(source: Source, context?: string) {
+        super(source, context);
+    }
+    error = "IndexNotFoundError";
 }
 
 /**

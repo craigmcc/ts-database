@@ -71,10 +71,10 @@ export interface ForeignKeyAttributes {
     tableName: TableName;           // Name of the foreign table
 }
 
-// Attributes of a new index being created.
+// Attributes of a new index being created, or an existing index being described
 export interface IndexAttributes {
     columnName: ColumnName | ColumnName[];  // Column name(s) to comprise the index
-    name?: IndexName;               // Name of this index [inferred]
+    name?: IndexName;               // Name of this index [inferred for create]
     unique?: boolean;               // Is this index unique? [false]
 }
 
@@ -90,6 +90,7 @@ export interface SelectCriteria {
 // Attributes of an existing table being described.
 export interface TableAttributes {
     columns: ColumnAttributes[];    // Column attributes of this table
+    indexes?: IndexAttributes[];    // Index attributes (returned by describeTable())
     name: TableName;                // Name of this table
 }
 
