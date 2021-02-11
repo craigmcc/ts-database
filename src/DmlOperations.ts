@@ -9,8 +9,10 @@
 // Internal Modules ----------------------------------------------------------
 
 import {
-    DataObject, SelectCriteria,
-    TableName, WhereCriteria,
+    DataObject,
+    SelectCriteria,
+    TableName,
+    WhereCriteria,
 } from "./types";
 
 // Public Objects ------------------------------------------------------------
@@ -42,7 +44,8 @@ export interface DmlOperations {
      * Insert one or more new rows into the specified table.
      *
      * @param tableName         Table into which a new row is inserted
-     * @param rows              Array of data values (keyed by column name)
+     * @param rows              DataObject (for one row) or array of DataObject
+     *                          containing the column values to be inserted
      * @param options           Options for this operation
      *
      * @returns Number of rows that were inserted
@@ -63,7 +66,7 @@ export interface DmlOperations {
      * @param criteria          Selection criteria defining what rows to match
      * @param options           Options for this operation
      *
-     * @returns Array of DataObject containing the matching rows
+     * @returns Array of DataObject containing the matching row(s)
      *
      * @throws TableNotFoundError if specified table does not exist
      */

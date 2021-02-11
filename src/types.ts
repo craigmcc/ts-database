@@ -64,7 +64,7 @@ export interface DataObject {
 
 // Attributes of a new foreign key being added.
 export interface ForeignKeyAttributes {
-    columnName: ColumnName | ColumnName[];  // Column name(s) in the foreign table
+    columnName: ColumnName;         // Column name in the foreign table
     onDelete?: OnDelete;            // On delete [none]
     onUpdate?: OnUpdate;            // On update [none]
     name?: ConstraintName;          // Name of this constraint [inferred]
@@ -90,7 +90,9 @@ export interface SelectCriteria {
 // Attributes of an existing table being described.
 export interface TableAttributes {
     columns: ColumnAttributes[];    // Column attributes of this table
-    indexes?: IndexAttributes[];    // Index attributes (returned by describeTable())
+    foreignKeys: ForeignKeyAttributes[]; // Foreign key attributes (returned
+                                         // by describeTable())
+    indexes: IndexAttributes[];     // Index attributes (returned by describeTable())
     name: TableName;                // Name of this table
 }
 
